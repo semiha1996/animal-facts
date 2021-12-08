@@ -10,6 +10,7 @@ namespace App\Exception;
  *
  * @author semiha
  */
-class InvalidCollectionObjectException extends InvalidArgumentException{
+class InvalidCollectionObjectException extends InvalidArgumentException
+{
     //put your code here
 }

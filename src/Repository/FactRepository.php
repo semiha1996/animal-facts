@@ -10,6 +10,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use App\Model\FactCollection;
 use Psr\Http\Message\StreamInterface;
+use GuzzleHttp;
 use stdClass;
 
 /**
@@ -17,75 +18,96 @@ use stdClass;
  *
  * @author semiha
  */
-class FactRepository {
+class FactRepository 
+{
     protected string $baseUrl;
     
     protected ClientInterface $httpClient;
     
-    public function __construct(string $baseUrl, ClientInterface $httpClient) {
+    public function __construct(string $baseUrl, ClientInterface $httpClient) 
+    {
         $this->baseUrl = $baseUrl;
         $this->httpClient = $httpClient;
     }
 
     /**
      * Loads a list with Fact objects
+     * 
      * @param int $amount - The amount of facts that should be loaded
+     * 
      * @param string $animalType - The animal type. Default is Fact::CAT
+     * 
      * @return FactCollection
      */
     public function getRandomList(
             int $amount = 10,
-            string $animalType = Fact::CAT): FactCollection{
-        
+            string $animalType = Fact::CAT
+            ): FactCollection {
+        return FactCollection;
     }
     
     /**
      * Loads single fact by its id
+     * 
      * @param string $id - The identifier of the fact that should be loaded
+     * 
      * @return Fact
      */
-    public function getFact(string $id):Fact {
+    public function getFact(string $id):Fact 
+    {
         return Fact;
     }
     
     /**
      * Creates the PSR HTTP request object
+     * 
      * @param string $endpoint - The API endpoint that must be called
+     * 
      * @param array $params - Query parameters for the URL
+     * 
      * @return RequestInterface
      */
     protected function createRequest(
             string $endpoint, 
-            array $params): RequestInterface{
+            array $params
+            ): RequestInterface {
         
         return RequestInterface;
     }
     
     /**
      * Ensures the response status is OK
-     * throws HttpResponseException
+     * 
      * @param ResponseInterface $response
+     * 
+     * @throws HttpResponseException
      */
-    protected function ensureHttpResponseIsOK(
-            ResponseInterface $response) {
+    protected function ensureHttpResponseIsOK(ResponseInterface $response) 
+    {
         
     }
     
     /**
      * Decodes the response body
-     * throws InvalidResponseBodyException
+     * 
      * @param StreamInterface $body - The response body for decoding
+     * 
      * @return array|\stdClass
+     * 
+     * @throws InvalidResponseBodyException
      */
     protected function decodeResponceBody(
-            StreamInterface $body):array|\stdClass {
+            StreamInterface $body
+            ):array|\stdClass {
         
         return;
     }
     
     /**
      * Creates Fact object from stdClass
+     * 
      * @param stdClass $object - The values that will be added to the Fact object
+     * 
      * @return Fact
      */
     protected function createFact(stdClass $object): Fact {

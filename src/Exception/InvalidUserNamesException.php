@@ -10,6 +10,7 @@ namespace App\Exception;
  *
  * @author semiha
  */
-class InvalidUserNamesException extends InvalidArgumentException{
+class InvalidUserNamesException extends InvalidArgumentException
+{
     //put your code here
 }

@@ -10,6 +10,7 @@ namespace App\Exception;
  *
  * @author semiha
  */
-class HttpResponseException extends RuntimeException{
+class HttpResponseException extends RuntimeException
+{
     //put your code here
 }

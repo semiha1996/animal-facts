@@ -10,6 +10,7 @@ namespace App\Exception;
  *
  * @author semiha
  */
-class InvalidFactTypeException extends InvalidArgumentException{
+class InvalidFactTypeException extends InvalidArgumentException
+{
     //put your code here
 }

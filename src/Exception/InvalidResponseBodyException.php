@@ -11,6 +11,7 @@ namespace App\Exception;
  * 
  * @author semiha
  */
-class InvalidResponseBodyException extends InvalidArgumentException{
+class InvalidResponseBodyException extends InvalidArgumentException
+{
     //put your code here
 }

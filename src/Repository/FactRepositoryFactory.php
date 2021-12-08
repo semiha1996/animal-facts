@@ -4,13 +4,17 @@
 
 namespace App\Repository;
 
+use \Psr\Http\Client\ClientInterface;
+
 /**
  * Creates FactRepository objects
  *
  * @author semiha
  */
-class FactRepositoryFactory {
-    public static function create(): FactRepository {
-        return FactRepository;
+class FactRepositoryFactory 
+{
+    public static function create(): FactRepository 
+    {
+        return FactRepository(ClientInterface::getInstance());
     }
 }

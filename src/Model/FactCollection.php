@@ -5,6 +5,8 @@
 namespace App\Model;
 
 use ArrayObject;
+use App\Exception\InvalidCollectionObjectException;
+
 /**
  * Collection with Fact objects
  *
@@ -13,22 +15,38 @@ use ArrayObject;
  *
  * @author semiha
  */
-class FactCollection extends ArrayObject{
-    
+class FactCollection extends ArrayObject
+{
     /**
      * Override the original method to validate the value is Fact object
+     * 
      * @param type $index - The index that the new value will be set on
-     * @param type $value - The object
+     * 
+     * @param type $newValue - The object
      */
-    public function offsetSet($index, $newValue) {
-        
+    public function offsetSet($index, $newValue) 
+    {
+        //TO DO
+        try{
+            $this->ensureFactObject(newValue);
+            
+        } catch (InvalidCollectionObjectException $ex) {
+          //  $ex->getMessage();
+        }
     }
     
     /**
      * Validate the object is Fact instance
+     * 
      * @param type $object - The object to be checked
+     * 
+     * @throws InvalidCollectionObjectException
      */
-     public function ensureFactObject($object) {
-        
+     protected function ensureFactObject($object) 
+    {
+        if(!$object instanceof Fact){
+            throw new InvalidCollectionObjectException(
+                    "Object of disallowed class is set to the collection");
+        }
     }
 }

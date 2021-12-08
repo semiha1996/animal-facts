@@ -10,32 +10,37 @@ namespace App\Model;
  *
  * @author semiha
  */
-class Status {
+class Status 
+{
     protected bool $verified;
     
     protected  int $sentCount;
     
-    public function __construct(bool $verified, int $sentCount) {
+    public function __construct(bool $verified, int $sentCount) 
+    {
         $this->verified = $verified;
         $this->sentCount = $sentCount;
     }
     
-    public function isVerified(): bool {
+    public function isVerified(): bool 
+    {
         return $this->verified;
     }
 
-    public function getSentCount(): int {
+    public function getSentCount(): int 
+    {
         return $this->sentCount;
     }
 
-    public function setVerified(bool $verified) {
+    public function setVerified(bool $verified) 
+    {
         $this->verified = $verified;
         return $this;
     }
 
-    public function setSentCount(int $sentCount) {
+    public function setSentCount(int $sentCount) 
+    {
         $this->sentCount = $sentCount;
         return $this;
     }
-
 }

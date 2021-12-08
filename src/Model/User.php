@@ -4,42 +4,66 @@
 
 namespace App\Model;
 
+use App\Exception\InvalidUserNamesException;
+
 /**
  * Description of User
  *
  * @author semiha
  */
-class User {
+class User 
+{
+    //The user's id
     protected string $id;
     
+    //The author's photo
     protected  string $photo;
     
+    //User first and last name as array
     protected array $name;
     
-    public function __construct(string $id, string $photo, array $name) {
+    public function __construct(string $id, string $photo, array $name) 
+    {
         $this->id = $id;
         $this->photo = $photo;
         $this->name = $name;
     }
 
-    public function getId(): string {
+    /**
+     * 
+     * @return string
+     */
+    public function getId(): string 
+    {
         return $this->id;
     }
 
-    public function getPhoto(): string {
+    /**
+     * Returns the photo path
+     * @return string
+     */
+    public function getPhoto(): string 
+    {
         return $this->photo;
     }
 
-    public function getName(): array {
+    /**
+     * Return first and last name as array
+     * @return array
+     */
+    public function getName(): array 
+    {
         return $this->name;
     }
 
-    public function setId(string $id) {
+    public function setId(string $id) 
+    {
         $this->id = $id;
         return $this;
     }
 
-    public function setPhoto(string $photo) {
+    public function setPhoto(string $photo) 
+    {
         $this->photo = $photo;
         return $this;
     }
@@ -49,12 +73,18 @@ class User {
      * 
      * @param array $name
      * @return $this
-     * 
-     * If the given parameter does not contain keys "first" or "last" 
-     * it will throw an InvalidUserNamesException
+     * @throws InvalidUserNamesException
      */
-    public function setName(array $name) {
-        $this->name = $name;
+    public function setName(array $name) 
+    {
+     /* If the given parameter does not contain keys "first" or "last" 
+     * it will throw an InvalidUserNamesException*/
+        
+        if(!array_key_exists('first', $name)&&(!array_key_exists('last', $name))) {
+            throw new InvalidUserNamesException;
+        }else {
+            $this->name = $name;
+        }
         return $this;
     }
 
@@ -63,23 +93,29 @@ class User {
      * Returns the user's full name
      * 
      */
-    public function getFullName(): string {
-        return string;
+    public function getFullName(): string 
+    {
+        $fullName = implode(' ',$name);
+        return $fullName;
     } 
     
     /**
      * Returns the user's first name
      * 
      */
-     public function getFirstName(): string {
-        return string;
+     public function getFirstName(): string 
+     {  
+        $firstName = $name['first'];
+        return $firstName;
     } 
     
     /**
      * Returns the user's last name
      * 
      */
-     public function getLastName(): string {
-        return string;
+     public function getLastName(): string 
+    {
+         $lastName = $name['last'];
+        return $lastName;
     } 
 }

@@ -15,6 +15,6 @@ class FactRepositoryFactory
 {
     public static function create(): FactRepository 
     {
-        return FactRepository(ClientInterface::getInstance());
+        return FactRepository(\BASE_URL, ClientInterface::getInstance());
     }
 }

@@ -17,22 +17,23 @@ use App\Exception\InvalidCollectionObjectException;
  */
 class FactCollection extends ArrayObject
 {
+    protected array $factCollection;
     /**
      * Override the original method to validate the value is Fact object
      * 
      * @param type $index - The index that the new value will be set on
      * 
-     * @param type $newValue - The object
+     * @param type $newval - The object
      */
-    public function offsetSet($index, $newValue) 
+    public function offsetSet(mixed $index, mixed $newval) 
     {
-        //TO DO
         try{
-            $this->ensureFactObject(newValue);
-            
+            $this->ensureFactObject($newval);
+            $factCollection = new ArrayObject();
+            $factCollection->offsetSet($index, $newval);
         } catch (InvalidCollectionObjectException $ex) {
-          //  $ex->getMessage();
-        }
+            $ex->getMessage();
+        }     
     }
     
     /**
@@ -42,7 +43,7 @@ class FactCollection extends ArrayObject
      * 
      * @throws InvalidCollectionObjectException
      */
-     protected function ensureFactObject($object) 
+     protected function ensureFactObject(object $object) 
     {
         if(!$object instanceof Fact){
             throw new InvalidCollectionObjectException(

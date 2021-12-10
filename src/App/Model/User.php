@@ -22,6 +22,12 @@ class User
     //User first and last name as array
     protected array $name;
     
+    /**
+     * Creates new User object
+     * @param string $id
+     * @param string $photo
+     * @param array $name
+     */
     public function __construct(string $id, string $photo, array $name) 
     {
         $this->id = $id;
@@ -56,6 +62,12 @@ class User
         return $this->name;
     }
 
+    /**
+     * Sets user's id
+     * 
+     * @param string $id
+     * @return $this
+     */
     public function setId(string $id) 
     {
         $this->id = $id;
@@ -80,8 +92,9 @@ class User
      /* If the given parameter does not contain keys "first" or "last" 
      * it will throw an InvalidUserNamesException*/
         
-        if(!array_key_exists('first', $name)&&(!array_key_exists('last', $name))) {
-            throw new InvalidUserNamesException;
+        if(!array_key_exists('first', $name)&&
+                (!array_key_exists('last', $name))) {
+            throw new InvalidUserNamesException('Invalid name');
         }else {
             $this->name = $name;
         }
@@ -95,7 +108,7 @@ class User
      */
     public function getFullName(): string 
     {
-        $fullName = implode(' ',$name);
+        $fullName = implode(' ',$this->name);
         return $fullName;
     } 
     
@@ -105,7 +118,7 @@ class User
      */
      public function getFirstName(): string 
      {  
-        $firstName = $name['first'];
+        $firstName = $this->name['first'];
         return $firstName;
     } 
     
@@ -115,7 +128,7 @@ class User
      */
      public function getLastName(): string 
     {
-         $lastName = $name['last'];
+         $lastName = $this->name['last'];
         return $lastName;
     } 
 }

@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\View\View;
 use App\Repository\FactRepository;
+use App\Model\FactCollection;
 
 /**
  * FactController objects
@@ -18,6 +19,12 @@ class FactController
     
     protected FactRepository $repository;
 
+    /**
+     * Creates new FactController object
+     * 
+     * @param View $view
+     * @param FactRepository $repository
+     */
     public function __construct(View $view, FactRepository $repository) 
     {
         $this->view = $view;
@@ -36,7 +43,8 @@ class FactController
      */
     public function list(int $amount, string $type): string 
     {
-        return ' ';
+        $fCollection = $repository->getRandomList($amount, $type);
+        return strval($fCollection);
     }
 
     /** Loads and renders a single fact
@@ -50,7 +58,8 @@ class FactController
      */
     public function single(string $id): string 
     {
-        return ' ';
+        $fact = $repository->getFact($id);
+        return strval($fact);
     }
 
 }

@@ -56,6 +56,10 @@ class Fact
         return $this->id;
     }
 
+    /**
+     * Returns the fact text
+     * @return string
+     */
     public function getText(): string 
     {
         return $this->text;
@@ -161,7 +165,7 @@ class Fact
        // If the type is not allowed it will throw InvalidFactTypeException
         
         if(!in_array($type, self::ALLOWED_TYPES)){
-            throw new InvalidFactTypeException;
+            throw new InvalidFactTypeException('The type is not allowed');
         }else {
             
              $this->type = $type;

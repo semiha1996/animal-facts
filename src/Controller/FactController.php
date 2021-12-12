@@ -43,8 +43,10 @@ class FactController
      */
     public function list(int $amount, string $type): string 
     {
-        $fCollection = $repository->getRandomList($amount, $type);
-        return strval($fCollection);
+        $fCollection = $this->repository->getRandomList($amount, $type);
+        //how to render array collection
+        $renderView = $this->view->render('fact/list', ['list'=>$fCollection]);
+        return $renderView;
     }
 
     /** Loads and renders a single fact
@@ -58,8 +60,9 @@ class FactController
      */
     public function single(string $id): string 
     {
-        $fact = $repository->getFact($id);
-        return strval($fact);
+        $fact = $this->repository->getFact($id);
+        $renderView = $this->view->render('fact/single', ['fact'=>$fact]);
+        return $renderView;
     }
 
 }

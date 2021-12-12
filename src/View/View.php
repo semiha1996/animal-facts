@@ -30,18 +30,14 @@ class View
      */
     public function render(string $viewName, array $viewModel):string 
     {   
-        //for testing
-       // $viewDirectory = 'views';
-        //Return the trailing name component of a path
-        $viewFile = basename($viewName).'.php';
-        $filePath = $viewDirectory.'/'.$viewName.'.php';
+        $filePath = $this->viewDirectory.'/'.$viewName.'.php';
         if(file_exists($filePath)){
             extract($viewModel);
             ob_start();
-            include $filePath;
+            require_once $filePath;
             $renderedView = ob_get_clean();
         }else {
-            $renderedView = render('error/no_view',$viewModel ); 
+            $renderedView = $this->render('error/no_view',$viewModel ); 
         }
         return $renderedView;
     }

@@ -11,7 +11,7 @@ define('DEFAULT_TYPE', Fact::CAT);
 define('BASE_URL', 'https://cat-fact.herokuapp.com');
 
 $view = new View('views');
-
+$html = '';
 try {
     if (isset($_GET['id'])) {
         $args = [$_GET['id']];

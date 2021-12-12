@@ -13,18 +13,8 @@ namespace App\Exception;
  */
 class InvalidResponseBodyException extends InvalidArgumentException
 {
-    protected string $message;
-    
      public function __construct(string $message = ' ') {
+        parent::__construct($message);
         $this->message = $message;
-    }
-    
-    public function getMessage(): string {
-        return $this->message;
-    }
-
-    public function setMessage(string $message) {
-        $this->message = $message;
-        return $this;
     }
 }

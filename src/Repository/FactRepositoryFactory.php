@@ -4,7 +4,7 @@
 
 namespace App\Repository;
 
-use \Psr\Http\Client\ClientInterface;
+use Repository\FactRepository;
 
 /**
  * Creates FactRepository objects
@@ -15,6 +15,6 @@ class FactRepositoryFactory
 {
     public static function create(): FactRepository 
     {
-        return FactRepository(\BASE_URL, ClientInterface::getInstance());
+        return FactRepository(\BASE_URL, new Client());
     }
 }

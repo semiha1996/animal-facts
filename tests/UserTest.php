@@ -2,14 +2,12 @@
 
 //src/tests/UserTest.php
 
-use PHPUnit\Framework\TestCase;
-
 /**
  *Test User class
  *
  * @author semiha
  */
-class UserTest extends TestCase
+class UserTest extends PHPUnit\Framework\TestCase
 {
     //put your code here
 }

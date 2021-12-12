@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/Controller/FactController.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/test.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/Repository/FactRepositoryFactory.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/Controller/FactControllerFactory.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/Model/Fact.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Controller/FactController.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Exception/HttpResponseException.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Controller/FactControllerFactory.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Repository/FactRepositoryFactory.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/View/View.php</file>
             <file>file:/C:/xampp/htdocs/animal-facts/index.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/Repository/FactRepository.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/App/View/View.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Repository/FactRepository.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Model/Fact.php</file>
+            <file>file:/C:/xampp/htdocs/animal-facts/src/Model/FactCollection.php</file>
         </group>
     </open-files>
 </project-private>

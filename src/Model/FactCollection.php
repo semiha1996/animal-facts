@@ -45,7 +45,7 @@ class FactCollection extends ArrayObject
      */
      protected function ensureFactObject(object $object) 
     {
-        if(!$object instanceof Fact){
+        if(!($object instanceof Fact)){
             throw new InvalidCollectionObjectException(
                     "Object of disallowed class is set to the collection");
         }

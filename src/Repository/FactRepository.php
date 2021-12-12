@@ -12,7 +12,6 @@ use App\Exception\InvalidResponseBodyException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
-use Psr\Http\Message\MessageInterface;
 use JsonException;
 use stdClass;
 use GuzzleHttp\Client;
@@ -51,25 +50,27 @@ class FactRepository
             ): FactCollection {
         
         $factCollection = new FactCollection();
-        for($i=0; $i<10; $i++){
             $request = $this->createRequest(
-                    'GET /facts/random',
-                    ['amount'=>$amount, 'animal_type'=>$animalType]);
-             $response = $httpClient->sendRequest($request);
+                    $this->baseUrl.'/facts/random?animal_type='.$animalType.'&amount='.$amount);
+               $response = $this->httpClient->sendRequest($request);
             try{
                 $this->ensureHttpResponseIsOK($response);
             } catch (HttpResponseException $ex) {
                 $ex->getMessage();
             }
-                $body = $response->getBody();
+            $body = $response->getBody();
             try {
-                //Returns stdClass or array
+                //Returns an array in this case
                 $decodedBody = $this->decodeResponceBody($body);
+                for($i=0; $i<DEFAULT_AMOUNT; $i++){
+                    $bodyToObj = (object)array_values($decodedBody)[$i];
+                    //Convert the array to object
+                    $factObj = $this->createFact($bodyToObj);
+                    $factCollection->offsetSet($i, $factObj);
+                }
             } catch(InvalidResponseBodyException $ex){
                 $ex->getMessage();
-            }
-            $factCollection->offsetSet($i, $decodedBody);
-        }
+            }           
         return $factCollection;
     }
     
@@ -83,9 +84,8 @@ class FactRepository
     public function getFact(string $id):Fact 
     {
         $request = $this->createRequest(
-                'GET /facts/:factID',
-                [0=>$id]);
-        $response = $httpClient->sendRequest($request);
+                $this->baseUrl.'/facts/'.$id);
+        $response = $this->httpClient->sendRequest($request);
         try{
             $this->ensureHttpResponseIsOK($response);
         } catch (HttpResponseException $ex) {
@@ -93,11 +93,13 @@ class FactRepository
         }
         $body = $response->getBody();
         try{
+           //Returns stdClass in this case
             $decodedBody = $this->decodeResponceBody($body);
         } catch(InvalidResponseBodyException $ex){
             $ex->getMessage();
         }
-        return $decodedBody;
+            $fact = $this->createFact($decodedBody);
+        return $fact;
     }
     
     /**
@@ -111,10 +113,10 @@ class FactRepository
      */
     protected function createRequest(
             string $endpoint, 
-            array $params
+            array $params = []
             ): RequestInterface {
         //Create a client with a base URI
-        $httpClient = new Client();
+        $this->httpClient = new Client();
         $request = new Request('GET', $endpoint,$params); 
         return $request;
     }
@@ -130,7 +132,7 @@ class FactRepository
     protected function ensureHttpResponseIsOK(ResponseInterface $response) 
     {
         if($response->getStatusCode() != 200){
-            throw new HttpResponceException('Http response NOT OK.');
+            throw new HttpResponseException('Http response code != 200 / NOT OK.');
         }
     }
     
@@ -166,13 +168,12 @@ class FactRepository
     protected function createFact(\stdClass $object): Fact 
     {
         $fact = new Fact();
+        $status = new \App\Model\Status($object->{'status'}->{'verified'},
+                $object->{'status'}->{'sentCount'});
 
-         foreach($object as $property => &$value){
-            $fact->$property = &$value;
-            unset($object->$property);
-        }
-        unset($value);
-        $object = (unset) $object;
+        $fact->setId($object->{'_id'});
+        $fact->setStatus($status);
+        
         return $fact;
     } 
 }

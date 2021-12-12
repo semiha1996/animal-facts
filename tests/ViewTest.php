@@ -2,14 +2,37 @@
 
 //src/tests/ViewTest.php
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Test View class
  *
  * @author semiha
  */
-class ViewTest extends TestCase 
+class ViewTest extends PHPUnit\Framework\TestCase 
 {
-    //put your code here
+    /**
+    * Test the View class constructor.
+     */
+    public function testCreateViewByConstructor()
+    {
+ 	$view = new View('views');	
+        $this->assertEquals('views', $view->viewDirectory);
+    }
+    
+    /**
+     * Test View's render method
+     */
+    public function testRenderMethodWithExistingView()
+    {
+ 	$view = new View('views');	
+        //$this->assertEquals('views', $view->viewDirectory);
+    }
+    
+    /**
+     * Test View's render method
+     */
+    public function testRenderMethodWithNonExistingView()
+    {
+ 	$view = new View('views');	
+        //$this->assertEquals('views', $view->viewDirectory);
+    }
 }

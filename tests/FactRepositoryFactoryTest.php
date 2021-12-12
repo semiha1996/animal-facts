@@ -2,14 +2,12 @@
 
 //src/tests/FactRepositoryTest.php
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Test FactRepositoryFactory
  *
  * @author semiha
  */
-class FactRepositoryFactoryTest extends TestCase
+class FactRepositoryFactoryTest extends PHPUnit\Framework\TestCase
 {
     //put your code here
 }

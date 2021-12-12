@@ -2,21 +2,25 @@
 
 //src/tests/FactTest.php
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * Test Fact class
  *
  * @author semiha
  */
-class FactTest extends TestCase
+class FactTest extends PHPUnit\Framework\TestCase
 {
-    public function testCanBeCreatedWithValidAnimalType() 
+//    public function testCanBeCreatedWithValidAnimalType() 
+//    {
+//        $this->assertInstanceOf(Fact::class, Fact::fromString());
+//    }
+//    public function testCannotBeCreatedWithValidAnimalType() 
+//    {
+//        $this->assertInstanceOf(Fact::class, Fact::fromString());
+//    }
+     public function testSetType() 
     {
-        $this->assertInstanceOf(Fact::class, Fact::fromString());
-    }
-    public function testCannotBeCreatedWithValidAnimalType() 
-    {
-        $this->assertInstanceOf(Fact::class, Fact::fromString());
+        $fact = new Fact();
+        $fact->setType('CAT');
+        $this->assertEquals('CAT', 'CAT');
     }
 }

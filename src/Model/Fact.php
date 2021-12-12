@@ -20,9 +20,9 @@ class Fact
     public const CAT = 'cat';
     
     public const DOG = 'dog';
-    
+         
     public const ALLOWED_TYPES = [self::CAT, self::DOG];
-            
+     
     //The fact's id
     protected string $id;
     
@@ -162,11 +162,10 @@ class Fact
      */
     public function setType(string $type) 
     {
-       // If the type is not allowed it will throw InvalidFactTypeException
-        
+       // If the type is not allowed it will throw InvalidFactTypeException 
         if(!in_array($type, self::ALLOWED_TYPES)){
             throw new InvalidFactTypeException('The type is not allowed');
-        }else {
+        } else {
             
              $this->type = $type;
         }

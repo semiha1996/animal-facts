@@ -2,13 +2,12 @@
 
 //src/tests/StatusTest.php
 
-use PHPUnit\Framework\TestCase;
 /**
  * Test Status class
  *
  * @author semiha
  */
-class StatusTest extends TestCase 
+class StatusTest extends PHPUnit\Framework\TestCase 
 {
     //put your code here
 }

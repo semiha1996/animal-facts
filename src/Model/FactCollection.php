@@ -30,7 +30,7 @@ class FactCollection extends ArrayObject
         try{
             $this->ensureFactObject($newval);
             $factCollection = new ArrayObject();
-            $factCollection->offsetSet($index, $newval);
+            parent::offsetSet($index, $newval);
         } catch (InvalidCollectionObjectException $ex) {
             $ex->getMessage();
         }     

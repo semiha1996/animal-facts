@@ -16,6 +16,9 @@ use JsonException;
 use stdClass;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use \App\Model\Status;
+use \App\Model\User;
+use App\Exception\InvalidFactTypeException;
 
 /**
  * Loads Fact models with information from the remote Animal Facts API
@@ -53,6 +56,10 @@ class FactRepository
             $request = $this->createRequest(
                     $this->baseUrl.'/facts/random?animal_type='.$animalType.'&amount='.$amount);
                $response = $this->httpClient->sendRequest($request);
+               
+               $userRequest = $this->createRequest(
+                    $this->baseUrl.'/users/');
+               $response = $this->httpClient->sendRequest($request);
             try{
                 $this->ensureHttpResponseIsOK($response);
             } catch (HttpResponseException $ex) {
@@ -67,6 +74,7 @@ class FactRepository
                     //Convert the array to object
                     $factObj = $this->createFact($bodyToObj);
                     $factCollection->offsetSet($i, $factObj);
+                    
                 }
             } catch(InvalidResponseBodyException $ex){
                 $ex->getMessage();
@@ -95,10 +103,11 @@ class FactRepository
         try{
            //Returns stdClass in this case
             $decodedBody = $this->decodeResponceBody($body);
+            $fact = $this->createFact($decodedBody);
         } catch(InvalidResponseBodyException $ex){
             $ex->getMessage();
         }
-            $fact = $this->createFact($decodedBody);
+           
         return $fact;
     }
     
@@ -168,12 +177,58 @@ class FactRepository
     protected function createFact(\stdClass $object): Fact 
     {
         $fact = new Fact();
-        $status = new \App\Model\Status($object->{'status'}->{'verified'},
-                $object->{'status'}->{'sentCount'});
-
-        $fact->setId($object->{'_id'});
+        // Check if the fields are set at all
+        if(isset($object->{'status'}->{'verified'})){
+            $verified = $object->{'status'}->{'verified'};
+        } else {
+            $verified = false;
+        }
+        if(isset($object->{'status'}->{'sentCount'})){
+            $sentCount = $object->{'status'}->{'sentCount'};
+        } else {
+            $sentCount = 0;
+        }
+        $status = new Status(
+                $verified, $sentCount);
         $fact->setStatus($status);
+  
+        $fact->setId($object->{'_id'});
+        $fact->setText($object->{'text'});
         
+//         if(isset($object->{'user'}->{'id'})){
+//            $id = $object->{'user'}->{'id'};
+//        } else {
+//            $id = false;
+//        }
+//         if(isset($object->{'user'}->{'photo'})){
+//            $photo= $object->{'user'}->{'photo'};
+//        } else {
+//            $photo = false;
+//        }
+//         if(isset($object->{'user'}->{'name'})){
+//            $name = $object->{'user'}->{'name'};
+//        } else {
+//            $name = false;
+//        }
+//        $user = new User($id, $photo, $name);
+//        $fact->setUser($user);
+        
+        try{
+            $fact->setType($object->{'type'});
+        } catch(InvalidFactTypeException $ex){
+            $ex->getMessage();
+        }
+        
+        $dateCreatedAt = date_create_immutable(
+                $object->{'createdAt'});
+        $fact->setCreatedAt($dateCreatedAt);
+        
+        if($object->{'updatedAt'}== ''){
+            $fact->setUpdatedAt($dateCreatedAt);
+        }
+        $dateUpdatedAt = date_create_immutable(
+                $object->{'updatedAt'});
+        $fact->setUpdatedAt($dateUpdatedAt); 
         return $fact;
     } 
 }

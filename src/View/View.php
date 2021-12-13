@@ -34,7 +34,8 @@ class View
         if(file_exists($filePath)){
             extract($viewModel);
             ob_start();
-            require_once $filePath;
+//            $html = render($filePath, $viewModel);
+            include $filePath;
             $renderedView = ob_get_clean();
         }else {
             $renderedView = $this->render('error/no_view',$viewModel ); 

@@ -2,6 +2,11 @@
 
 //src/tests/FactRepositoryTest.php
 
+use App\Repository\FactRepository;
+
+define('ENDPOINT','');
+
+define('BASE_URL','https://cat-fact.herokuapp.com');
 /**
  * Test FactRepository
  *
@@ -9,5 +14,12 @@
  */
 class FactRepositoryTest extends PHPUnit\Framework\TestCase
 {
-    //put your code here
+    /**
+     * Test create request method
+     * @test
+     */
+    public function testCreateRequestMethod()
+    {
+        
+    }
 }

@@ -38,7 +38,7 @@ class View
             include $filePath;
             $renderedView = ob_get_clean();
         }else {
-            $renderedView = $this->render('error/no_view',$viewModel ); 
+            $renderedView = $this->render('error/no_view',['name']); //???$viewModel or ['name']
         }
         return $renderedView;
     }

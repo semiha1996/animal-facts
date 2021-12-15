@@ -32,7 +32,11 @@ class User
     {
         $this->id = $id;
         $this->photo = $photo;
-        $this->name = $name;
+        try{
+            $this->name = $name;
+        } catch(InvalidUserNamesException $ex){
+            $ex->getMessage();
+        }
     }
 
     /**
@@ -90,7 +94,8 @@ class User
     public function setName(array $name) 
     {
      /* If the given parameter does not contain keys "first" or "last" 
-     * it will throw an InvalidUserNamesException*/
+     * @throws InvalidUserNamesException
+     */
         
         if(!array_key_exists('first', $name)&&
                 (!array_key_exists('last', $name))) {

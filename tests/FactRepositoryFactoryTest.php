@@ -2,6 +2,8 @@
 
 //src/tests/FactRepositoryTest.php
 
+define('BASE_URL','https://cat-fact.herokuapp.com');
+
 /**
  * Test FactRepositoryFactory
  *
@@ -9,5 +11,16 @@
  */
 class FactRepositoryFactoryTest extends PHPUnit\Framework\TestCase
 {
-    //put your code here
+    /**
+     * Test creating FactRepositoryFactory object
+     */
+    public function testCreateFactRepositoryFactoryObject() 
+    {
+        $httpClient = new Client();
+        $repository = new FactRepository(BASE_URL, $httpClient);  
+        
+        $factory = new FactRepositoryFactory();
+        
+        $this->assertInstanceOf($factory->create(),$repository);
+    }
 }

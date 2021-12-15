@@ -55,11 +55,7 @@ class FactRepository
         $factCollection = new FactCollection();
             $request = $this->createRequest(
                     $this->baseUrl.'/facts/random?animal_type='.$animalType.'&amount='.$amount);
-               $response = $this->httpClient->sendRequest($request);
-               
-               $userRequest = $this->createRequest(
-                    $this->baseUrl.'/users/');
-               $response = $this->httpClient->sendRequest($request);
+            $response = $this->httpClient->sendRequest($request);
             try{
                 $this->ensureHttpResponseIsOK($response);
             } catch (HttpResponseException $ex) {
@@ -69,12 +65,11 @@ class FactRepository
             try {
                 //Returns an array in this case
                 $decodedBody = $this->decodeResponceBody($body);
-                for($i=0; $i<DEFAULT_AMOUNT; $i++){
+                for($i=0; $i< DEFAULT_AMOUNT; $i++){
                     $bodyToObj = (object)array_values($decodedBody)[$i];
                     //Convert the array to object
                     $factObj = $this->createFact($bodyToObj);
                     $factCollection->offsetSet($i, $factObj);
-                    
                 }
             } catch(InvalidResponseBodyException $ex){
                 $ex->getMessage();
@@ -195,23 +190,29 @@ class FactRepository
         $fact->setId($object->{'_id'});
         $fact->setText($object->{'text'});
         
-//         if(isset($object->{'user'}->{'id'})){
-//            $id = $object->{'user'}->{'id'};
-//        } else {
-//            $id = false;
-//        }
-//         if(isset($object->{'user'}->{'photo'})){
-//            $photo= $object->{'user'}->{'photo'};
-//        } else {
-//            $photo = false;
-//        }
-//         if(isset($object->{'user'}->{'name'})){
-//            $name = $object->{'user'}->{'name'};
-//        } else {
-//            $name = false;
-//        }
-//        $user = new User($id, $photo, $name);
-//        $fact->setUser($user);
+        //Така че когато сглобяваш обекта на факта трябва да правиш проверка кое 
+        //съществува и под каква форма - isset(), is_string(), is_object(),
+        //това са функциите, които могат да свършат работа за тези проверки.
+        
+         if(isset($object->{'user'}->{'_id'})){
+           $id = $object->{'user'}->{'_id'};
+       } else {
+           $id = '';
+        }
+         if(isset($object->{'user'}->{'photo'})){
+            $photo= $object->{'user'}->{'photo'};
+        } else {
+            $photo = '';
+        }
+         if(isset($object->{'user'}->{'name'})){
+            $firstName = $object->{'user'}->{'name'}->{'first'};
+            $lastName = $object->{'user'}->{'name'}->{'last'};
+            $name = ['first'=>$firstName,'last'=>$lastName];
+        } else {
+            $name = [];
+        }
+        $user = new User($id, $photo, $name);
+        $fact->setAuthor($user);
         
         try{
             $fact->setType($object->{'type'});

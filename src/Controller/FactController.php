@@ -1,7 +1,5 @@
 <?php
 
-//src/Controller/FactController.php
-
 namespace App\Controller;
 
 use App\View\View;
@@ -11,7 +9,7 @@ use App\Model\FactCollection;
 /**
  * FactController objects
  *
- * @author semiha
+ * @author semiha <semiha_19@abv.bg>
  */
 class FactController 
 {

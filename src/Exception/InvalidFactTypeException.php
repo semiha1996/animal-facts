@@ -4,6 +4,8 @@
 
 namespace App\Exception;
 
+use InvalidArgumentException;
+
 /**
  * InvalidFactTypeException is thrown when disallowed type is tried to be set
  * for a Fact

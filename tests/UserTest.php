@@ -55,6 +55,8 @@ class UserTest extends PHPUnit\Framework\TestCase
     public function testSetNameMethod() 
     {
         $user = new User(EXPECTED_ID, EXPECTED_PHOTO, INVALID_NAME);
-        $this->expectExceptionObject(InvalidUserNameException);
+        $this->expectException(InvalidUserNamesException::class);
+        $this->expectExceptionMessage = 'Invalid name';
+        $user->setName(INVALID_NAME);  
     }
 }

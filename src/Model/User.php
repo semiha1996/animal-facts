@@ -63,6 +63,7 @@ class User
      */
     public function getName(): array 
     {
+        //$arrNames = array_fill_keys(['first','last'],$this->name);
         return $this->name;
     }
 
@@ -97,7 +98,7 @@ class User
      * @throws InvalidUserNamesException
      */
         
-        if(!array_key_exists('first', $name)&&
+        if(!array_key_exists('first', $name)||
                 (!array_key_exists('last', $name))) {
             throw new InvalidUserNamesException('Invalid name');
         }else {

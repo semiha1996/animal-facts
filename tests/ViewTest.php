@@ -4,8 +4,8 @@
 
 use App\View\View;
 
-define(VIEW_DIR,'views');
-define(EXPECTED_RENDER_STR,
+define('VIEW_DIR','views');
+define('EXPECTED_RENDER_STR',
         '<!doctype html>
 <html lang="en">
     <head>
@@ -36,6 +36,8 @@ define(EXPECTED_RENDER_STR,
     </body>
 </html>');
 
+define('EXPECTED_RENDER_ERR','');
+
 /**
  * Test View class
  *
@@ -43,23 +45,14 @@ define(EXPECTED_RENDER_STR,
  */
 class ViewTest extends PHPUnit\Framework\TestCase 
 {
-    
-    /**
-    * Test the View class constructor.
-     * @test
-     */
-    public function testCreateViewByConstructor()
-    {
- 	$view = new View(VIEW_DIR);	
-        $this->assertEquals(VIEW_DIR, $view->getViewDirectory());
-    }
-    
     /**
      * Test View's render method
+     * @test
      */
     public function testRenderMethodWithExistingView()
     {
-        $renderedView = $this->view->render('layout',['title','content']);
+        $view = new View(VIEW_DIR);
+        $renderedView = $view->render('layout',['title','content']);
         $this->assertEquals(EXPECTED_RENDER_STR,$renderedView );
     }
     
@@ -69,7 +62,8 @@ class ViewTest extends PHPUnit\Framework\TestCase
      */
     public function testRenderMethodWithNonExistingView()
     {
- 	$renderedView = $this->view->render('error/noview',['name']);
-        $this->assertEquals(EXPECTED_RENDER_STR,$renderedView );
+        $view = new View(VIEW_DIR);
+ 	$renderedView = $view->render('error/noview',['name']);
+        $this->assertEquals(EXPECTED_RENDER_ERR,$renderedView );
     }
 }

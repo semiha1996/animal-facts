@@ -4,6 +4,8 @@
 
 namespace App\Exception;
 
+use InvalidArgumentException;
+
 /**
  * InvalidUserNamesException is thrown when an array without "first" or "last" 
  * index is tried to be set for user names.

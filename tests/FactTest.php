@@ -4,7 +4,6 @@
 
 use App\Exception\InvalidFactTypeException;
 use App\Model\Fact;
-use InvalidArgumentException;
 
 /**
  * Test Fact class
@@ -45,8 +44,9 @@ class FactTest extends PHPUnit\Framework\TestCase
     {
         $fact = new Fact();
         define('EXPECTED_TYPE_INVALID', 'cow');
-        $fact->setType('EXPECTED_TYPE_INVALID');
-        $this->expectExceptionObject(InvalidFactTypeException); 
+        $this->expectException(InvalidFactTypeException::class);
+        $this->expectExceptionMessage = 'The type is not allowed';
+        $fact->setType('EXPECTED_TYPE_INVALID');     
     }
     /**
      * @test

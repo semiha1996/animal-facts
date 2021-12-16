@@ -1,7 +1,5 @@
 <?php
 
-//src/View/View.php
-
 namespace App\View;
 
 /**
@@ -9,36 +7,35 @@ namespace App\View;
  *
  * @author semiha
  */
-class View 
+class View
 {
     //Path to view directory
     protected string $viewDirectory;
-    
-    public function __construct(string $viewDirectory) 
+
+    public function __construct(string $viewDirectory)
     {
         $this->viewDirectory = $viewDirectory;
     }
 
     /**
      * Render a template with a view model
-     * 
+     *
      * @param string $viewName
-     * 
+     *
      * @param array $viewModel
-     * 
+     *
      * @return string
      */
-    public function render(string $viewName, array $viewModel):string 
-    {   
-        $filePath = $this->viewDirectory.'/'.$viewName.'.php';
-        if(file_exists($filePath)){
+    public function render(string $viewName, array $viewModel): string
+    {
+        $filePath = $this->viewDirectory . '/' . $viewName . '.php';
+        if (file_exists($filePath)) {
             extract($viewModel);
             ob_start();
-//            $html = render($filePath, $viewModel);
             include $filePath;
             $renderedView = ob_get_clean();
-        }else {
-            $renderedView = $this->render('error/no_view',['name']); //???$viewModel or ['name']
+        } else {
+            $renderedView = $this->render('error/no_view', ['name']); //???$viewModel or ['name']
         }
         return $renderedView;
     }

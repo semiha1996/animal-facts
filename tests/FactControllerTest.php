@@ -7,10 +7,10 @@ use App\Repository\FactRepository;
 use App\View\View;
 use GuzzleHttp\Client;
 
-define('BASE_URL','https://cat-fact.herokuapp.com');
-define('FACT_ID','591f98703b90f7150a19c138');
-define('DEFAULT_AMOUNT',10);
-define('TYPE','cat');
+define('BASE_URL', 'https://cat-fact.herokuapp.com');
+define('FACT_ID', '591f98703b90f7150a19c138');
+define('DEFAULT_AMOUNT', 10);
+define('TYPE', 'cat');
 
 /**
  * Description of FactController
@@ -20,11 +20,11 @@ define('TYPE','cat');
 class FactControllerTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Test list method for displaying a list of particular amount facts about 
+     * Test list method for displaying a list of particular amount facts about
      * allowed type of animal
      * @test
      */
-    public function testListMethod() 
+    public function testListMethod()
     {
         $view = new View('views');
         $repository = new FactRepository(BASE_URL, new Client());
@@ -36,7 +36,7 @@ class FactControllerTest extends PHPUnit\Framework\TestCase
      * Test single method for displaying a single fact's data
      * @test
      */
-    public function testSingleMethod() 
+    public function testSingleMethod()
     {
         $view = new View('views');
         $repository = new FactRepository(BASE_URL, new Client());

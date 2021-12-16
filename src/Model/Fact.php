@@ -1,10 +1,8 @@
 <?php
 
-//src/Model/Fact.php
-
 namespace App\Model;
 
-use \DateTimeImmutable;
+use DateTimeImmutable;
 use App\Model\Status;
 use App\Model\User;
 use App\Exception\InvalidFactTypeException;
@@ -15,43 +13,43 @@ use App\Exception\InvalidFactTypeException;
  * @author semiha
  */
 
-class Fact 
+class Fact
 {
     public const CAT = 'cat';
-    
+
     public const DOG = 'dog';
-         
+
     public const ALLOWED_TYPES = [self::CAT, self::DOG];
-     
+
     //The fact's id
     protected string $id;
-    
+
     //The fact's text
     protected string $text;
-    
+
     //The user's id
     protected string $user;
-    
+
     //The animal type(cat or dog)
     protected string $type;
-    
+
     //The Date, the fact is created
     protected DateTimeImmutable $createdAt;
-    
+
     //The Date, the fact is updated (can be null)
     protected ?DateTimeImmutable $updatedAt;
-    
+
     //The fact's status
     protected Status $status;
-    
+
     //The author of a fact (can be null)
     protected ?User $author;
-    
+
     /**
-     * 
+     *
      * @return string the id of a fact
      */
-    public function getId(): string 
+    public function getId(): string
     {
         return $this->id;
     }
@@ -60,25 +58,25 @@ class Fact
      * Returns the fact text
      * @return string
      */
-    public function getText(): string 
+    public function getText(): string
     {
         return $this->text;
     }
 
     /**
      * Returns the id of the user
-     * @return string 
+     * @return string
      */
-    public function getUser(): string 
+    public function getUser(): string
     {
         return $this->user;
     }
 
     /**
      * Returns the type of the animal
-     * @return string 
+     * @return string
      */
-    public function getType(): string 
+    public function getType(): string
     {
         return $this->type;
     }
@@ -87,7 +85,7 @@ class Fact
      * Returns the date the fact was created
      * @return DateTimeImmutable
      */
-    public function getCreatedAt(): DateTimeImmutable 
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -96,7 +94,7 @@ class Fact
      *  Returns the date the fact was updated or null if not
      * @return DateTimeImmutable|null
      */
-    public function getUpdatedAt(): ?DateTimeImmutable 
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -105,27 +103,27 @@ class Fact
      * Returns the status of a fact
      * @return Status
      */
-    public function getStatus(): Status 
+    public function getStatus(): Status
     {
         return $this->status;
     }
 
     /**
-     * 
+     *
      * @return User|null
      */
-    public function getAuthor(): ?User 
+    public function getAuthor(): ?User
     {
         return $this->author;
     }
 
     /**
      * Set the fact id
-     * 
+     *
      * @param string $id
      * @return $this
      */
-    public function setId(string $id) 
+    public function setId(string $id)
     {
         $this->id = $id;
         return $this;
@@ -133,11 +131,11 @@ class Fact
 
     /**
      * Set the text of the fact
-     * 
+     *
      * @param string $text
      * @return $this
      */
-    public function setText(string $text) 
+    public function setText(string $text)
     {
         $this->text = $text;
         return $this;
@@ -147,7 +145,7 @@ class Fact
      * @param string $user
      * @return $this
      */
-    public function setUser(string $user) 
+    public function setUser(string $user)
     {
         $this->user = $user;
         return $this;
@@ -157,28 +155,27 @@ class Fact
      * Sets the type of the animal fact
      * @param string $type
      * @return $this
-     * 
+     *
      * @throws InvalidFactTypeException
      */
-    public function setType(string $type) 
+    public function setType(string $type)
     {
-       // If the type is not allowed it will throw InvalidFactTypeException 
-        if(!in_array($type, self::ALLOWED_TYPES)){
+       // If the type is not allowed it will throw InvalidFactTypeException
+        if (!in_array($type, self::ALLOWED_TYPES)) {
             throw new InvalidFactTypeException('The type is not allowed');
         } else {
-            
              $this->type = $type;
         }
         return $this;
     }
 
-    public function setCreatedAt(DateTimeImmutable $createdAt) 
+    public function setCreatedAt(DateTimeImmutable $createdAt)
     {
         $this->createdAt = $createdAt;
         return $this;
     }
 
-    public function setUpdatedAt(?DateTimeImmutable $updatedAt) 
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;
@@ -189,7 +186,7 @@ class Fact
      * @param Status $status
      * @return $this
      */
-    public function setStatus(Status $status) 
+    public function setStatus(Status $status)
     {
         $this->status = $status;
         return $this;
@@ -200,7 +197,7 @@ class Fact
      * @param User|null $author
      * @return $this
      */
-    public function setAuthor(?User $author) 
+    public function setAuthor(?User $author)
     {
         $this->author = $author;
         return $this;

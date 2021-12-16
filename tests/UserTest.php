@@ -10,53 +10,54 @@ use App\Exception\InvalidUserNamesException;
  *
  * @author semiha
  */
-    define('EXPECTED_ID','20cv4cj5');
-    define('EXPECTED_PHOTO','/images/img1.png');
-    define('EXPECTED_NAME',['first'=>'Ivan','last'=>'Ivanov']);
-    define('INVALID_NAME',['Semiha','Tahirova']);
-    
+
+    define('EXPECTED_ID', '20cv4cj5');
+    define('EXPECTED_PHOTO', '/images/img1.png');
+    define('EXPECTED_NAME', ['first' => 'Ivan','last' => 'Ivanov']);
+    define('INVALID_NAME', ['Semiha','Tahirova']);
+
 class UserTest extends PHPUnit\Framework\TestCase
 {
     /**
      * Test getFullName method
      * @test
      */
-    public function testGetFullNameMethod() 
+    public function testGetFullNameMethod()
     {
         $user = new User(EXPECTED_ID, EXPECTED_PHOTO, EXPECTED_NAME);
-        define('EXPECTED_FULL_NAME','Ivan Ivanov');
+        define('EXPECTED_FULL_NAME', 'Ivan Ivanov');
         $this->assertEquals(EXPECTED_FULL_NAME, $user->getFullName());
     }
     /**
      * Test getFirstName method
      * @test
      */
-    public function testGetFirstNameMethod() 
+    public function testGetFirstNameMethod()
     {
         $user = new User(EXPECTED_ID, EXPECTED_PHOTO, EXPECTED_NAME);
-        define('EXPECTED_FIRST_NAME','Ivan');
+        define('EXPECTED_FIRST_NAME', 'Ivan');
         $this->assertEquals(EXPECTED_FIRST_NAME, $user->getFirstName());
     }
     /**
      * Test getLastName method
      * @test
      */
-    public function testGetLastNameMethod() 
+    public function testGetLastNameMethod()
     {
         $user = new User(EXPECTED_ID, EXPECTED_PHOTO, EXPECTED_NAME);
-        define('EXPECTED_LAST_NAME','Ivanov');
+        define('EXPECTED_LAST_NAME', 'Ivanov');
         $this->assertEquals(EXPECTED_LAST_NAME, $user->getLastName());
     }
-    
+
     /**
      * Test setName method with invalid name array
      * @test
      */
-    public function testSetNameMethod() 
+    public function testSetNameMethod()
     {
         $user = new User(EXPECTED_ID, EXPECTED_PHOTO, INVALID_NAME);
         $this->expectException(InvalidUserNamesException::class);
         $this->expectExceptionMessage = 'Invalid name';
-        $user->setName(INVALID_NAME);  
+        $user->setName(INVALID_NAME);
     }
 }

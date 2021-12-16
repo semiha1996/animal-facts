@@ -1,7 +1,5 @@
 <?php
 
-//src/Exception/InvalidFactTypeException.php
-
 namespace App\Exception;
 
 use InvalidArgumentException;
@@ -14,7 +12,8 @@ use InvalidArgumentException;
  */
 class InvalidFactTypeException extends InvalidArgumentException
 {
-     public function __construct(string $message = ' ') {
+    public function __construct(string $message = ' ')
+    {
         parent::__construct($message);
         $this->message = $message;
     }

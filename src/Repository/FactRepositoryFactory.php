@@ -1,20 +1,19 @@
 <?php
 
-//src/Repository/FactRepositoryFactory.php
-
 namespace App\Repository;
 
-use Repository\FactRepository;
+use App\Repository\FactRepository;
+use GuzzleHttp\Client;
 
 /**
  * Creates FactRepository objects
  *
  * @author semiha
  */
-class FactRepositoryFactory 
+class FactRepositoryFactory
 {
-    public static function create(): FactRepository 
+    public static function create(): FactRepository
     {
-        return FactRepository(\BASE_URL, new Client());
+        return new FactRepository(\BASE_URL, new Client());
     }
 }

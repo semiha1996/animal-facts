@@ -1,7 +1,5 @@
 <?php
 
-//src/Model/User.php
-
 namespace App\Model;
 
 use App\Exception\InvalidUserNamesException;
@@ -11,39 +9,39 @@ use App\Exception\InvalidUserNamesException;
  *
  * @author semiha
  */
-class User 
+class User
 {
     //The user's id
     protected string $id;
-    
+
     //The author's photo
-    protected  string $photo;
-    
+    protected string $photo;
+
     //User first and last name as array
     protected array $name;
-    
+
     /**
      * Creates new User object
      * @param string $id
      * @param string $photo
      * @param array $name
      */
-    public function __construct(string $id, string $photo, array $name) 
+    public function __construct(string $id, string $photo, array $name)
     {
         $this->id = $id;
         $this->photo = $photo;
-        try{
+        try {
             $this->name = $name;
-        } catch(InvalidUserNamesException $ex){
+        } catch (InvalidUserNamesException $ex) {
             $ex->getMessage();
         }
     }
 
     /**
-     * 
+     *
      * @return string
      */
-    public function getId(): string 
+    public function getId(): string
     {
         return $this->id;
     }
@@ -52,7 +50,7 @@ class User
      * Returns the photo path
      * @return string
      */
-    public function getPhoto(): string 
+    public function getPhoto(): string
     {
         return $this->photo;
     }
@@ -61,7 +59,7 @@ class User
      * Return first and last name as array
      * @return array
      */
-    public function getName(): array 
+    public function getName(): array
     {
         //$arrNames = array_fill_keys(['first','last'],$this->name);
         return $this->name;
@@ -69,39 +67,41 @@ class User
 
     /**
      * Sets user's id
-     * 
+     *
      * @param string $id
      * @return $this
      */
-    public function setId(string $id) 
+    public function setId(string $id)
     {
         $this->id = $id;
         return $this;
     }
 
-    public function setPhoto(string $photo) 
+    public function setPhoto(string $photo)
     {
         $this->photo = $photo;
         return $this;
     }
 
     /**
-     * Sets the user's first and last names. 
-     * 
+     * Sets the user's first and last names.
+     *
      * @param array $name
      * @return $this
      * @throws InvalidUserNamesException
      */
-    public function setName(array $name) 
+    public function setName(array $name)
     {
-     /* If the given parameter does not contain keys "first" or "last" 
+     /* If the given parameter does not contain keys "first" or "last"
      * @throws InvalidUserNamesException
      */
-        
-        if(!array_key_exists('first', $name)||
-                (!array_key_exists('last', $name))) {
+
+        if (
+            !array_key_exists('first', $name) ||
+                (!array_key_exists('last', $name))
+        ) {
             throw new InvalidUserNamesException('Invalid name');
-        }else {
+        } else {
             $this->name = $name;
         }
         return $this;
@@ -110,31 +110,31 @@ class User
 
     /**
      * Returns the user's full name
-     * 
+     *
      */
-    public function getFullName(): string 
+    public function getFullName(): string
     {
-        $fullName = implode(' ',$this->name);
+        $fullName = implode(' ', $this->name);
         return $fullName;
-    } 
-    
+    }
+
     /**
      * Returns the user's first name
-     * 
+     *
      */
-     public function getFirstName(): string 
-     {  
+    public function getFirstName(): string
+    {
         $firstName = $this->name['first'];
         return $firstName;
-    } 
-    
+    }
+
     /**
      * Returns the user's last name
-     * 
+     *
      */
-     public function getLastName(): string 
+    public function getLastName(): string
     {
-         $lastName = $this->name['last'];
+        $lastName = $this->name['last'];
         return $lastName;
-    } 
+    }
 }

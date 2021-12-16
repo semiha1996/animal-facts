@@ -12,24 +12,23 @@ use App\Model\Fact;
  */
 class FactTest extends PHPUnit\Framework\TestCase
 {
-    
     /**
      * Test id getter and setter
      * @test
      */
-    public function testGetAndSetIdMethod() 
+    public function testGetAndSetIdMethod()
     {
         $fact = new Fact();
-        define('EXPECTED_ID', '20cvcj5');
-        $fact->setId(EXPECTED_ID);
-        $this->assertEquals(EXPECTED_ID, $fact->getId());
+        define('EXPECTED_FACT_ID', '20cvcj5');
+        $fact->setId(EXPECTED_FACT_ID);
+        $this->assertEquals(EXPECTED_FACT_ID, $fact->getId());
     }
-    
+
     /**
      * Test text getter and setter
      * @test
      */
-    public function testGetAndSetTextMethod() 
+    public function testGetAndSetTextMethod()
     {
         $fact = new Fact();
         define('EXPECTED_TEXT', 'Cats love long naps');
@@ -40,18 +39,18 @@ class FactTest extends PHPUnit\Framework\TestCase
      * Test animalType get/set Method With Invalid Data
      * @test
      */
-    public function testGetAndSetTypeMethodWithInvalidData() 
+    public function testGetAndSetTypeMethodWithInvalidData()
     {
         $fact = new Fact();
         define('EXPECTED_TYPE_INVALID', 'cow');
         $this->expectException(InvalidFactTypeException::class);
         $this->expectExceptionMessage = 'The type is not allowed';
-        $fact->setType('EXPECTED_TYPE_INVALID');     
+        $fact->setType('EXPECTED_TYPE_INVALID');
     }
     /**
      * @test
      */
-    public function testGetAndSetAnimalTypeMethodWithValidData() 
+    public function testGetAndSetAnimalTypeMethodWithValidData()
     {
         $fact = new Fact();
         define('EXPECTED_TYPE', 'cat');
@@ -62,7 +61,7 @@ class FactTest extends PHPUnit\Framework\TestCase
      * Test user id getter and setter
      * @test
      */
-    public function testGetAndSetUserIdMethod() 
+    public function testGetAndSetUserIdMethod()
     {
         $fact = new Fact();
         define('EXPECTED_USER_ID', 'abc');
@@ -73,10 +72,10 @@ class FactTest extends PHPUnit\Framework\TestCase
      * Test createdAT getter and setter
      * @test
      */
-    public function testGetAndSetCreatedAtMethod() 
+    public function testGetAndSetCreatedAtMethod()
     {
         $fact = new Fact();
-        $expectedCreatedAt = new DateTimeImmutable(2001-01-01);
+        $expectedCreatedAt = new DateTimeImmutable(2001 - 01 - 01);
         $fact->setCreatedAt($expectedCreatedAt);
         $this->assertEquals($expectedCreatedAt, $fact->getCreatedAt());
     }
@@ -84,10 +83,10 @@ class FactTest extends PHPUnit\Framework\TestCase
      * Test updatedAt getter and setter with data
      * @test
      */
-    public function testGetAndSetUpdatedAtMethod() 
+    public function testGetAndSetUpdatedAtMethod()
     {
         $fact = new Fact();
-        $expectedUpdatedAt = new DateTimeImmutable(2001-01-01);
+        $expectedUpdatedAt = new DateTimeImmutable(2001 - 01 - 01);
         $fact->setUpdatedAt($expectedUpdatedAt);
         $this->assertEquals($expectedUpdatedAt, $fact->getUpdatedAt());
     }
@@ -95,7 +94,7 @@ class FactTest extends PHPUnit\Framework\TestCase
      * Test updatedAt getter and setter with null
      * @test
      */
-    public function testGetAndSetUpdatedAtMethodWithNull() 
+    public function testGetAndSetUpdatedAtMethodWithNull()
     {
         $fact = new Fact();
         $expectedNullUpdatedAt = null;

@@ -1,8 +1,10 @@
 <?php
 
-//src/tests/FactRepositoryTest.php
+use GuzzleHttp\Client;
+use App\Repository\FactRepository;
+use App\Repository\FactRepositoryFactory;
 
-define('BASE_URL','https://cat-fact.herokuapp.com');
+define('BASE_URL', 'https://cat-fact.herokuapp.com');
 
 /**
  * Test FactRepositoryFactory
@@ -14,13 +16,12 @@ class FactRepositoryFactoryTest extends PHPUnit\Framework\TestCase
     /**
      * Test creating FactRepositoryFactory object
      */
-    public function testCreateFactRepositoryFactoryObject() 
+    public function testCreateFactRepositoryFactoryObject()
     {
         $httpClient = new Client();
-        $repository = new FactRepository(BASE_URL, $httpClient);  
-        
+
         $factory = new FactRepositoryFactory();
-        
-        $this->assertInstanceOf($factory->create(),$repository);
+
+        $this->assertInstanceOf(FactRepository::class, $factory->create());
     }
 }

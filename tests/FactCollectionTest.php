@@ -1,21 +1,17 @@
 <?php
 
-//src/tests/FactCollectionTest.php
-
 use App\Model\FactCollection;
 use App\Model\Fact;
 use App\Model\Status;
 use App\Model\User;
-use App\Exception\InvalidCollectionObjectException;
 
 /**
  * Test FactCollection
- *
+ * When valid object is passed to the offsetSet method, the count of elements in
+ * $fCollection is set to 1
  * @author semiha
+ * @test
  */
-
-    define('EXPECTED_INDEX', 0);
-    define('EXPECTED_NEW_VALUE', $fact);
 
 class FactCollectionTest extends PHPUnit\Framework\TestCase
 {
@@ -37,6 +33,7 @@ class FactCollectionTest extends PHPUnit\Framework\TestCase
             $status,
             $user
         );
+
         $fCollection = new FactCollection();
         $fCollection->offsetSet(0, $fact);
         $expectedCount = 1;
@@ -47,6 +44,8 @@ class FactCollectionTest extends PHPUnit\Framework\TestCase
 
     /**
      * Test offsetSet Method with invalid Fact
+     * When invalid object is passed to the offsetSet method, the count of
+     * elements in $fCollection is 0
      * @test
      */
     public function testOffseSetMethodWithInvalidFactObject()

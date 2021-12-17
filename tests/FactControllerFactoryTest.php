@@ -1,7 +1,5 @@
 <?php
 
-//src/tests/FactControllerFactoryTest.php
-
 use App\Controller\FactControllerFactory;
 use App\Controller\FactController;
 use App\Repository\FactRepository;

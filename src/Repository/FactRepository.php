@@ -56,6 +56,7 @@ class FactRepository
             $this->ensureHttpResponseIsOK($response);
         } catch (HttpResponseException $ex) {
             $ex->getMessage();
+            return $factCollection;
         }
         $body = $response->getBody();
         try {
@@ -90,6 +91,7 @@ class FactRepository
             $this->ensureHttpResponseIsOK($response);
         } catch (HttpResponseException $ex) {
             $ex->getMessage();
+            return new Fact();
         }
         $body = $response->getBody();
         try {

@@ -1,7 +1,5 @@
 <?php
 
-//src/tests/FactTest.php
-
 use App\Exception\InvalidFactTypeException;
 use App\Model\Fact;
 

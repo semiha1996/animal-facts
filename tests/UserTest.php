@@ -1,7 +1,5 @@
 <?php
 
-//src/tests/UserTest.php
-
 use App\Model\User;
 use App\Exception\InvalidUserNamesException;
 
@@ -11,13 +9,26 @@ use App\Exception\InvalidUserNamesException;
  * @author semiha
  */
 
-    define('EXPECTED_ID', '20cv4cj5');
-    define('EXPECTED_PHOTO', '/images/img1.png');
-    define('EXPECTED_NAME', ['first' => 'Ivan','last' => 'Ivanov']);
-    define('INVALID_NAME', ['Semiha','Tahirova']);
+define('EXPECTED_ID', '20cv4cj5');
+define('EXPECTED_PHOTO', '/images/img1.png');
+define('EXPECTED_NAME', ['first' => 'Ivan','last' => 'Ivanov']);
+define('INVALID_NAME', ['Semiha','Tahirova']);
 
 class UserTest extends PHPUnit\Framework\TestCase
 {
+    /**
+     * Test Creating User Object
+     * @test
+     */
+    public function testCreatingUserObject()
+    {
+        $user = new User(EXPECTED_ID, EXPECTED_PHOTO, INVALID_NAME);
+        $this->assertEquals(EXPECTED_ID, $user->getId());
+        $this->assertEquals(EXPECTED_PHOTO, $user->getPhoto());
+        $this->expectException(InvalidUserNamesException::class);
+        $this->expectExceptionMessage = 'Invalid name';
+        $user->setName(INVALID_NAME);
+    }
     /**
      * Test getFullName method
      * @test
@@ -53,11 +64,37 @@ class UserTest extends PHPUnit\Framework\TestCase
      * Test setName method with invalid name array
      * @test
      */
-    public function testSetNameMethod()
+    public function testSetNameMethodWithInvalidNames()
     {
-        $user = new User(EXPECTED_ID, EXPECTED_PHOTO, INVALID_NAME);
+        $user = new User(EXPECTED_ID, EXPECTED_PHOTO, EXPECTED_NAME);
+
         $this->expectException(InvalidUserNamesException::class);
         $this->expectExceptionMessage = 'Invalid name';
         $user->setName(INVALID_NAME);
+    }
+    /**
+     * Test Creating User Object
+     * @test
+     */
+    public function testSetNamesMethodWithValidData()
+    {
+        $user = new User(EXPECTED_ID, EXPECTED_PHOTO, EXPECTED_NAME);
+        $validNamesArr = ['first' => 'Semiha', 'last' => 'Karaibrahimova'];
+        $user->setName($validNamesArr);
+        $this->assertEquals($validNamesArr, $user->getName());
+    }
+    /**
+     * Test setName method with valid name array
+     * @test
+     */
+    public function testSettersWithValidData()
+    {
+        $user = new User('', '', EXPECTED_NAME);
+
+        $user->setId(EXPECTED_ID);
+        $this->assertEquals(EXPECTED_ID, $user->getId());
+
+        $user->setPhoto(EXPECTED_PHOTO);
+        $this->assertEquals(EXPECTED_PHOTO, $user->getPhoto());
     }
 }

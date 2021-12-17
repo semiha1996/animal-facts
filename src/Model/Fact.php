@@ -22,7 +22,7 @@ class Fact
     public const ALLOWED_TYPES = [self::CAT, self::DOG];
 
     //The fact's id
-    protected string $id;
+    protected string $id = "";
 
     //The fact's text
     protected string $text;

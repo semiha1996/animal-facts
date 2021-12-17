@@ -31,7 +31,7 @@ class User
         $this->id = $id;
         $this->photo = $photo;
         try {
-            $this->name = $name;
+            $this->setName($name);
         } catch (InvalidUserNamesException $ex) {
             $ex->getMessage();
         }

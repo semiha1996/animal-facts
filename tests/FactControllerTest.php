@@ -1,7 +1,5 @@
 <?php
 
-//src/tests/FactControllerTest.php
-
 use App\Controller\FactController;
 use App\Repository\FactRepository;
 use App\View\View;

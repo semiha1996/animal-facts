@@ -1,12 +1,11 @@
 <?php
 
-//src/tests/FactRepositoryTest.php
-
 use App\Repository\FactRepository;
+use GuzzleHttp\Client;
+use App\Model\Fact;
 
-define('ENDPOINT', '');
+define('FACT_ID', '591f98703b90f7150a19c138');
 
-define('BASE_URL', 'https://cat-fact.herokuapp.com');
 /**
  * Test FactRepository
  *
@@ -15,10 +14,46 @@ define('BASE_URL', 'https://cat-fact.herokuapp.com');
 class FactRepositoryTest extends PHPUnit\Framework\TestCase
 {
     /**
-     * Test create request method
+     * Test get list of facts method
      * @test
      */
-    public function testCreateRequestMethod()
+    public function testGetRandomListMethod()
     {
+        $repository = new FactRepository(BASE_URL, new Client());
+        $fCollection = $repository->getRandomList();
+        $this->assertTrue($fCollection->count() >= 1);
+    }
+
+     /**
+     * Test get list of facts method with Not Found response from server
+     * @test
+     */
+    public function testGetRandomListMethodNotFoundResponse()
+    {
+        $repository = new FactRepository(BASE_URL . '/wrong/', new Client());
+        $fCollection = $repository->getRandomList();
+        $this->assertTrue($fCollection->count() >= 0);
+    }
+
+    /**
+     * Test get single fact method
+     * @test
+     */
+    public function testGetFactMethod()
+    {
+        $repository = new FactRepository(BASE_URL, new Client());
+        $fact = $repository->getFact(FACT_ID);
+        $this->assertInstanceOf(Fact::class, $fact);
+    }
+
+    /**
+     * Test get single fact method with Not Found response from server
+     * @test
+     */
+    public function testGetFactMethodNotFoundResponse()
+    {
+        $repository = new FactRepository(BASE_URL . '/wrong/', new Client());
+        $fact = $repository->getFact(FACT_ID);
+        $this->assertTrue($fact->getId() === "");
     }
 }

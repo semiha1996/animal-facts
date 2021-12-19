@@ -25,13 +25,8 @@ class FactCollection extends ArrayObject
      */
     public function offsetSet(mixed $index, mixed $newval)
     {
-        try {
             $this->ensureFactObject($newval);
-            $factCollection = new ArrayObject();
             parent::offsetSet($index, $newval);
-        } catch (InvalidCollectionObjectException $ex) {
-            $ex->getMessage();
-        }
     }
 
     /**

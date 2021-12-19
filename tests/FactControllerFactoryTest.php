@@ -6,7 +6,6 @@ use App\Repository\FactRepository;
 use GuzzleHttp\Client;
 use App\View\View;
 
-define('VIEW_DIR', 'views');
 define('BASE_URL', 'https://cat-fact.herokuapp.com');
 
 /**

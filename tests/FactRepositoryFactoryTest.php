@@ -4,8 +4,6 @@ use GuzzleHttp\Client;
 use App\Repository\FactRepository;
 use App\Repository\FactRepositoryFactory;
 
-define('BASE_URL', 'https://cat-fact.herokuapp.com');
-
 /**
  * Test FactRepositoryFactory
  *

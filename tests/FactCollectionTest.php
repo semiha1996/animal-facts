@@ -4,6 +4,7 @@ use App\Model\FactCollection;
 use App\Model\Fact;
 use App\Model\Status;
 use App\Model\User;
+use App\Exception\InvalidCollectionObjectException;
 
 /**
  * Test FactCollection
@@ -44,8 +45,8 @@ class FactCollectionTest extends PHPUnit\Framework\TestCase
 
     /**
      * Test offsetSet Method with invalid Fact
-     * When invalid object is passed to the offsetSet method, the count of
-     * elements in $fCollection is 0
+     * When invalid object is passed to the offsetSet method,
+     * InvalidCollectionObjectException is thrown
      * @test
      */
     public function testOffseSetMethodWithInvalidFactObject()
@@ -57,10 +58,8 @@ class FactCollectionTest extends PHPUnit\Framework\TestCase
         );
 
         $fCollection = new FactCollection();
-        $fCollection->offsetSet(0, $user);
-        $expectedCount = 0;
-        $actualCount = $fCollection->count();
-
-        $this->assertEquals($expectedCount, $actualCount);
+        $this->expectException(InvalidCollectionObjectException::class);
+        $this->expectExceptionMessage = 'Object of disallowed class is set to the collection';
+        $fCollection->offsetSet(0, $user); 
     }
 }

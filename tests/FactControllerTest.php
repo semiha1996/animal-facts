@@ -5,8 +5,6 @@ use App\Repository\FactRepository;
 use App\View\View;
 use GuzzleHttp\Client;
 
-define('BASE_URL', 'https://cat-fact.herokuapp.com');
-define('FACT_ID', '591f98703b90f7150a19c138');
 define('DEFAULT_AMOUNT', 10);
 define('TYPE', 'cat');
 

@@ -3,26 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactRepositoryTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/test.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/views/error/no_view.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/View/View.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactControllerFactoryTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/Model/User.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactControllerTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/ViewTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/StatusTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/views/layout.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/Controller/FactController.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactCollectionTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/Repository/FactRepositoryFactory.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/vendor/composer/ClassLoader.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/index.php</file>
             <file>file:/C:/xampp/htdocs/animal-facts/src/Repository/FactRepository.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/FactRepositoryFactoryTest.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/src/Model/Fact.php</file>
-            <file>file:/C:/xampp/htdocs/animal-facts/tests/UserTest.php</file>
         </group>
     </open-files>
 </project-private>
